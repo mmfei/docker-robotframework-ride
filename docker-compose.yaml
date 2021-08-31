@@ -1,0 +1,27 @@
+version: "3.5"
+services:
+  robotframework.ride:
+    image: softsam/robotframework-ride
+    volumes:
+      - /data1:/data1
+      - volumes.robotframework.data:/robot
+    environment:
+      - DISPLAY=host.docker.internal:0
+    restart: always
+    networks:
+      - current_network
+networks:
+  current_network: # docker network create ohmydocker.networks.default
+    external: true
+    name: ohmydocker.networks.default
+volumes:
+  volumes.robotframework.data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /data1/src/script/robots/test
+  ## OR:
+  #volumes.robotframework.data:
+  #  external:
+  #     name: volumes.robotframework.data # docker volume create --name volumes.robotframework.data --opt type=none --opt device=/data/robotframework/test --opt o=bin

@@ -1,8 +1,5 @@
 FROM ubuntu:14.04
 
-MAINTAINER softsam
-
-
 RUN apt-get -y update \
     && apt-get install -y python-wxgtk2.8 \
     && apt-get install -y python python-pip \
